@@ -30,3 +30,6 @@
 
 # SimpleCov
 /coverage
+
+# Ignore Figaro's application configuration file
+/config/application.yml
