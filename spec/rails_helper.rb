@@ -63,3 +63,13 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  config.hook_into :webmock
+  config.filter_sensitive_data('TOMTOM_API_KEY') { ENV['TOMTOM_API_KEY'] }
+  config.filter_sensitive_data('WALK_SCORE_API_KEY') { ENV['WALK_SCORE_API_KEY'] }
+  config.filter_sensitive_data('SAFE_PLACE_API_KEY') { ENV['SAFE_PLACE_API_KEY'] }
+  config.configure_rspec_metadata!
+  config.default_cassette_options = { allow_playback_repeats: true }
+end
