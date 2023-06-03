@@ -7,10 +7,16 @@ class PropertyImportJob
     temp_properties = []
     file = Rails.root.join("db", "data", "CERT_RENTAL_SUTBLTY.csv")
     CSV.foreach(file, headers: true) do |row|
-    temp_properties << TempProperty.new(street: row["ADDRESS"], zipcode: row["ZIPCODE"], license_number: row["LICENSE_NUMBER"], license_created_at: row["CRS_CREATED_DATE"])
+    temp_properties << TempProperty.new(street: row["ADDRESS"], zipcode: row["ZIP"], license_number: license_cleaner(row["LICENSENUMBER"]), license_created_at: row["CRS_CREATEDDATE"])
     end
     TempProperty.import temp_properties[0..9]
     require 'pry'; binding.pry
+  end
+
+  def license_cleaner(license_number)
+    if license_number.class == String
+      license_number.strip
+    end
   end
 end
 # PropertyImportJob.perform_async
