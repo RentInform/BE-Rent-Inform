@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_02_210916) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_044030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_210916) do
     t.string "license_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["street"], name: "index_properties_on_street", unique: true
   end
 
   create_table "temp_properties", force: :cascade do |t|
