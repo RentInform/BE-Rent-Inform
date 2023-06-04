@@ -5,7 +5,8 @@ class PropertySearchFacade
   end
 
   def set_scores(property)
-    coordinates = geocode("#{property.street}, Philadelphia, PA #{property.zipcode}")
+    set_city_and_state(property)
+    coordinates = geocode("#{property.street}, #{property.city}, #{property.state} #{property.zipcode}")
     scores = get_mobility_scores(property.street, coordinates).merge(get_safety_score(coordinates))
 
     property.walk_score = scores[:walk].to_s
@@ -15,6 +16,7 @@ class PropertySearchFacade
   end
 
   private
+
   def normalize_search(street)
     number_and_text = street.split(/(\D+)/)
     number = number_and_text[0]
@@ -29,6 +31,11 @@ class PropertySearchFacade
     normalized_text = text.gsub(regex, street_types)
 
     return number, normalized_text
+  end
+
+  def set_city_and_state(property)
+    property.city = "Philadelphia"
+    property.state = "PA"
   end
 
   def geocode(street)
