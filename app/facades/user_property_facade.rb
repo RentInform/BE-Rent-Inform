@@ -5,8 +5,9 @@ class UserPropertyFacade
   end
 
   def get_property(user_id, property_id)
-    property_ids = get_property_ids(user_id)
-    find_properties(property_ids).find { |property| property.id == property_id.to_i }
+   property = find_properties([property_id]).first
+   set_city_and_state_one_property(property)
+   property
   end
   private
 
@@ -17,6 +18,12 @@ class UserPropertyFacade
   def find_properties(property_ids)
     properties = Property.where(id: property_ids)
     set_city_and_state(properties)
+  end
+
+  def set_city_and_state_one_property(property)
+    property.city = 'Philadelphia'
+    property.state = 'PA'
+    property
   end
 
   def set_city_and_state(properties)

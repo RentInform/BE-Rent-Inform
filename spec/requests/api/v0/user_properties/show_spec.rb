@@ -13,8 +13,8 @@ RSpec.describe 'Get one Property details for user' do
     @user_property_2 = UserProperty.create!(user_id: @user1_id, property_id: @property_2.id)
   end
 
-  it 'returns one Property for a User' do
-    get "/api/v0/user_properties/#{@property_1.id}?user_id=#{@user1_id}"
+  it 'returns one Property for a User', :vcr do
+    get "/api/v0/user_property?property_id=#{@property_1.id}?user_id=#{@user1_id}"
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
