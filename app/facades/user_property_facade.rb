@@ -4,6 +4,10 @@ class UserPropertyFacade
     find_properties(property_ids)
   end
 
+  def get_property(user_id, property_id)
+    property_ids = get_property_ids(user_id)
+    find_properties(property_ids).find { |property| property.id == property_id.to_i }
+  end
   private
 
   def get_property_ids(user_id)
