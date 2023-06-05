@@ -33,3 +33,6 @@
 
 # Ignore Figaro's application configuration file
 /config/application.yml
+
+# Ignore vcr_cassettes
+/spec/fixtures/vcr_cassettes
