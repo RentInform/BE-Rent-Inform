@@ -194,6 +194,8 @@ GEM
       rspec-support (~> 3.12)
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
     sidekiq (7.1.1)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -238,6 +240,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.5)
   rspec-rails
+  shoulda-matchers
   sidekiq
   simplecov
   tzinfo-data
