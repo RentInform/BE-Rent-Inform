@@ -14,11 +14,11 @@ RSpec.describe 'Get one Property details for user' do
   end
 
   it 'returns one Property for a User', :vcr do
-    get "/api/v0/user_property?property_id=#{@property_1.id}?user_id=#{@user1_id}"
-
+    get "/api/v0/user_property?property_id=#{@property_1.id}&user_id=#{@user1_id}"
+    
     expect(response).to be_successful
     expect(response.status).to eq(200)
-
+    
     data = JSON.parse(response.body, symbolize_names: true)
     expect(data).to be_a Hash
     expect(data).to have_key(:data)
@@ -38,8 +38,8 @@ RSpec.describe 'Get one Property details for user' do
 
     attributes = user_property[:attributes]
     expect(attributes[:street]).to eq(@property_1.street)
-
-    keys = [:street, :city, :state, :zip]
+    
+    keys = [:street, :city, :state, :zip, :walk_score, :transit_score, :bike_score, :safety_score]
     keys.each do |key|
       expect(attributes).to have_key(key)
       expect(attributes[key]).to be_a(String)

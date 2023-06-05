@@ -5,8 +5,8 @@ class Api::V0::UserPropertiesController < ApplicationController
   end
 
   def show
-    user_property = UserPropertyFacade.new.get_property(params[:user_id], params[:property_id])
-    PropertySearchFacade.new.set_scores(user_property)
-    render json: UserPropertySerializer.new(user_property)
+    property = Property.find(params[:property_id])
+    PropertySearchFacade.new.set_scores(property)
+    render json: PropertySerializer.new(property)
   end
 end
