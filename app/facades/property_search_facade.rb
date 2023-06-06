@@ -1,7 +1,7 @@
 class PropertySearchFacade
   def search_by_address(street)
     number, normalized_street = normalize_search(street)
-    Property.where("street ILIKE ?", "#{number} %#{normalized_street}%")[0]
+    Property.where('street ILIKE ?', "#{number} %#{normalized_street}%")[0]
   end
 
   def set_scores(property)
@@ -20,22 +20,28 @@ class PropertySearchFacade
   def normalize_search(street)
     number_and_text = street.split(/(\D+)/)
     number = number_and_text[0]
-    text = number_and_text[1].downcase().strip()
+    text = number_and_text[1].upcase().strip()
     street_types = {
-      "street" => "st",
-      "road" => "rd",
-      "avenue" => "ave",
-      "lane" => "ln"
+      'AVENUE' => 'AVE',
+      'BOULEVARD' => 'BLVD',
+      'CIRCLE' => 'CIR',
+      'COURT' => 'CT',
+      'DRIVE' => 'DR',
+      'LANE' => 'LN',
+      'PARKWAY' => 'PKWY',
+      'PLACE' => 'PL',
+      'ROAD' => 'RD',
+      'STREET' => 'ST',
+      'TERRACE' => 'TER'
     }
     regex = Regexp.new(street_types.keys.map { |key| Regexp.escape(key) }.join('|'))
     normalized_text = text.gsub(regex, street_types)
-
     return number, normalized_text
   end
 
   def set_city_and_state(property)
-    property.city = "Philadelphia"
-    property.state = "PA"
+    property.city = 'Philadelphia'
+    property.state = 'PA'
   end
 
   def geocode(street)
