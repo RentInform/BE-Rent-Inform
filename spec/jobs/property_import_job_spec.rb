@@ -7,6 +7,10 @@ RSpec.describe PropertyImportJob, type: :job do
       PropertyImportJob.perform_now(@file_path)
     end
 
+    after(:all) do
+      Property.destroy_all
+    end
+
     it 'creates and saves property records for each unique address in a CSV file' do
       expect(Property.count).to eq(9)
 

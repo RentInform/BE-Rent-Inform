@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Property Search Endpoint', :vcr do
-  before(:each) do
-    @property_1 = Property.create!(street: '1 BROWN ST', zipcode: '19123', license_number: '811649')
-    @property_2 = Property.create!(street: '1 CHRISTIAN ST', zipcode: '19147', license_number: '791507')
-    @property_3 = Property.create!(street: '1 COTTON ST', zipcode: '19127', license_number: '725285')
-  end
-
   describe 'Property Search: Property Found in Database' do
+    before(:each) do
+      @property_1 = Property.create!(street: '1 BROWN ST', zipcode: '19123', license_number: '811649')
+      @property_2 = Property.create!(street: '1 CHRISTIAN ST', zipcode: '19147', license_number: '791507')
+      @property_3 = Property.create!(street: '1 COTTON ST', zipcode: '19127', license_number: '725285')
+    end
+
     it 'returns data about a specific property if property search is successful' do
       street = '1 Brown Street'
       zip = '19123'
