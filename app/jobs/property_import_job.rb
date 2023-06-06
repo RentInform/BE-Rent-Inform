@@ -3,19 +3,17 @@ require 'csv'
 class PropertyImportJob < ApplicationJob
   queue_as :default
 
-  FILE = Rails.root.join('db', 'data', 'CERT_RENTAL_SUTBLTY.csv')
-
-  def perform
-    TempProperty.import csv_to_temp
+  def perform(file_path)
+    TempProperty.import csv_to_temp(file_path)
     Property.import temp_to_final(sanitized_list), on_duplicate_key_ignore: [:street]
     TempProperty.delete_all
   end
 
   private
 
-  def csv_to_temp
+  def csv_to_temp(file_path)
     temp_properties = []
-    CSV.foreach(FILE, headers: true) do |row|
+    CSV.foreach(file_path, headers: true) do |row|
       temp_properties << TempProperty.new(street: row['ADDRESS'],
                                           zipcode: row['ZIP'],
                                           license_number: license_cleaner(row['LICENSENUMBER']),
