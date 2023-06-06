@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/RentInform/Rent-Inform-BE">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/philadelphia_004_1276_pano_up.jpg" alt="Logo" width="900" height="315">
   </a>
 
 <h3 align="center">RentInform</h3>
@@ -100,7 +100,8 @@ RentInform is a civic data tool designed to help prospective Philadelphia renter
 RentInfrom BE uses these integrations:
 * [WalkScore Professional](https://www.walkscore.com/professional/api.php)
 * [TomTom Places API](https://developer.tomtom.com/products/places-api)
-* [Google Directions API](https://developers.google.com/maps/documentation/directions/get-directions)
+* [TomTom Geocoding API](https://developer.tomtom.com/geocoding-api/documentation/geocode)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,7 +116,7 @@ To get a local copy up and running follow these simple example steps.
 
 1. Get a free WalkScore API Key [here](https://www.walkscore.com/professional/api-sign-up.php)
 2. Get a free TomTom Places API Key [here](https://developer.tomtom.com/user/register)
-3. Get a free Google Directions API Key [here](https://developers.google.com/maps/documentation/directions/get-directions)
+3. Get a free TomTom Geocoding API Key [here](https://developer.tomtom.com/geocoding-api/documentation/geocode)
 4. Fork the repo
 5. Clone the repo, by running this in your terminal
    ```
@@ -157,8 +158,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- ROADMAP -->
 ## Roadmap
-
-- [ ] list future refactors and potential future features
+- [ ] 
 
 See the [open issues](https://github.com/RentInform/Rent-Inform-BE/issues) for a full list of proposed features (and known issues).
 
@@ -175,9 +175,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b new_feature_branch_name`)
+3. Commit your Changes (`git commit -m 'Add some new feature'`)
+4. Push to the Branch (`git push origin new_feature_branch_name`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
