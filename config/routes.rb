@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get '/search', to: 'properties#search'
       get '/user_properties', to: 'user_properties#index'
       get '/user_property', to: 'user_properties#show'
+      post '/user_property', to: 'user_properties#create'
     end
   end
 end

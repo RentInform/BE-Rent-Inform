@@ -1,8 +1,7 @@
 class UserPropertySerializer
   include JSONAPI::Serializer
-
-  set_type :property
+  
+  set_type :user_property
   set_id :id
-  attributes :street, :city, :state
-  attribute :zip, &:zipcode
+  attributes :user_id, :property_id
 end
