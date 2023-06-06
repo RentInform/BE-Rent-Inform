@@ -10,36 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_03_044030) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_191937) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "properties", force: :cascade do |t|
-    t.string "street"
-    t.string "zipcode"
-    t.string "license_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["street"], name: "index_properties_on_street", unique: true
+  create_table 'properties', force: :cascade do |t|
+    t.string 'street'
+    t.string 'zip'
+    t.string 'license_number'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['street'], name: 'index_properties_on_street', unique: true
   end
 
-  create_table "temp_properties", force: :cascade do |t|
-    t.string "street"
-    t.string "zipcode"
-    t.string "license_number"
-    t.datetime "license_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'temp_properties', force: :cascade do |t|
+    t.string 'street'
+    t.string 'zip'
+    t.string 'license_number'
+    t.datetime 'license_created_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "user_properties", force: :cascade do |t|
-    t.bigint "property_id", null: false
-    t.string "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["property_id"], name: "index_user_properties_on_property_id"
-    t.index ["user_id"], name: "index_user_properties_on_user_id"
+  create_table 'user_properties', force: :cascade do |t|
+    t.bigint 'property_id', null: false
+    t.string 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['property_id'], name: 'index_user_properties_on_property_id'
+    t.index ['user_id'], name: 'index_user_properties_on_user_id'
   end
 
-  add_foreign_key "user_properties", "properties"
+  add_foreign_key 'user_properties', 'properties'
 end
