@@ -3,7 +3,7 @@ class UserPropertyFacade
     property_ids = get_property_ids(user_id)
     find_properties(property_ids)
   end
-
+ 
   private
 
   def get_property_ids(user_id)
