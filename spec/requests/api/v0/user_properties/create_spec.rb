@@ -9,6 +9,7 @@ RSpec.describe 'Create a UserProperty' do
     @property_2 = Property.create!(street: '1 CHRISTIAN ST', zip: '19147', license_number: '791507')
     @property_3 = Property.create!(street: '1 COTTON ST', zip: '19127', license_number: '725285')
   end
+
   it 'creates a UserProperty' do
     post "/api/v0/user_property?user_id=#{@user1_id}&property_id=#{@property_1.id}"
 

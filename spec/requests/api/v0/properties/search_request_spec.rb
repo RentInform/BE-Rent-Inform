@@ -6,7 +6,7 @@ RSpec.describe 'Property Search Endpoint', :vcr do
     @property_2 = Property.create!(street: '1 CHRISTIAN ST', zip: '19147', license_number: '791507')
     @property_3 = Property.create!(street: '1 COTTON ST', zip: '19127', license_number: '725285')
   end
-
+  
   describe 'Property Search: Property Found in Database' do
     it 'returns data about a specific property if property search is successful' do
       street = '1 Brown Street'
