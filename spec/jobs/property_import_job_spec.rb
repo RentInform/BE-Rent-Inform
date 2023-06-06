@@ -7,6 +7,10 @@ RSpec.describe PropertyImportJob, type: :job do
       PropertyImportJob.perform_now(@file_path)
     end
 
+    after(:all) do
+      Property.destroy_all
+    end
+
     it 'creates and saves property records for each unique address in a CSV file' do
       expect(Property.count).to eq(9)
 
@@ -14,12 +18,12 @@ RSpec.describe PropertyImportJob, type: :job do
         expect(property).to be_a(Property)
 
         expect(property.street).to be_a(String) unless property.street.nil?
-        expect(property.zipcode).to be_a(String) unless property.zipcode.nil?
+        expect(property.zip).to be_a(String) unless property.zip.nil?
         expect(property.license_number).to be_a(String) unless property.license_number.nil?
       end
 
       expect(Property.first.street).to eq('1 ACADEMY CIR # 319')
-      expect(Property.first.zipcode).to eq('19146')
+      expect(Property.first.zip).to eq('19146')
       expect(Property.first.license_number).to eq('835117')
     end
 

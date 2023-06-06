@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Property Search Endpoint', :vcr do
   before(:each) do
-    @property_1 = Property.create!(street: '1 BROWN ST', zipcode: '19123', license_number: '811649')
-    @property_2 = Property.create!(street: '1 CHRISTIAN ST', zipcode: '19147', license_number: '791507')
-    @property_3 = Property.create!(street: '1 COTTON ST', zipcode: '19127', license_number: '725285')
+    @property_1 = Property.create!(street: '1 BROWN ST', zip: '19123', license_number: '811649')
+    @property_2 = Property.create!(street: '1 CHRISTIAN ST', zip: '19147', license_number: '791507')
+    @property_3 = Property.create!(street: '1 COTTON ST', zip: '19127', license_number: '725285')
   end
 
   describe 'Property Search: Property Found in Database' do
@@ -45,7 +45,7 @@ RSpec.describe 'Property Search Endpoint', :vcr do
       expect(attributes[:street]).to eq(@property_1.street)
       expect(attributes[:city]).to eq('Philadelphia')
       expect(attributes[:state]).to eq('PA')
-      expect(attributes[:zip]).to eq(@property_1.zipcode)
+      expect(attributes[:zip]).to eq(@property_1.zip)
     end
   end
 

@@ -6,7 +6,7 @@ class PropertySearchFacade
 
   def set_scores(property)
     set_city_and_state(property)
-    coordinates = geocode("#{property.street}, #{property.city}, #{property.state} #{property.zipcode}")
+    coordinates = geocode("#{property.street}, #{property.city}, #{property.state} #{property.zip}")
     scores = get_mobility_scores(property.street, coordinates).merge(get_safety_score(coordinates))
 
     property.walk_score = scores[:walk].to_s
