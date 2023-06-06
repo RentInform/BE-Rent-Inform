@@ -40,7 +40,7 @@ gem "bootsnap", require: false
 # Sidekiq
 gem 'sidekiq'
 
-#ActiveRecord Import
+# ActiveRecord Import
 gem 'activerecord-import'
 
 # Faraday and Figaro
@@ -68,4 +68,3 @@ group :test do
   gem 'vcr'
   gem 'shoulda-matchers'
 end
-
