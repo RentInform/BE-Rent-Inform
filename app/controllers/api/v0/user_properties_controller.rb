@@ -11,11 +11,11 @@ class Api::V0::UserPropertiesController < ApplicationController
   end
 
   def create
-    user_property = UserProperty.new(user_id: params[:user_id], property_id: params[:property_id])
-    if user_property.save
-      render json: UserPropertySerializer.new(user_property), status: 201
+    if UserProperty.find_by(user_id: params[:user_id], property_id: params[:property_id])
+      render json: { "error": "User has already saved this property" }, status: 422
     else
-      render json: { "data": nil }, status: 400
+      user_property = UserProperty.create(user_id: params[:user_id], property_id: params[:property_id])
+      render json: UserPropertySerializer.new(user_property), status: 201
     end
   end
 end

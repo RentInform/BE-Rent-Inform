@@ -36,4 +36,18 @@ RSpec.describe 'Create a UserProperty' do
     expect(attributes[:user_id]).to be_a(String)
     expect(attributes[:property_id]).to be_a(Integer)
   end
+
+  it 'does not create a UserProperty if one already exists' do
+    up = UserProperty.create!(user_id: @user1_id, property_id: @property_1.id)
+
+    post "/api/v0/user_property?user_id=#{@user1_id}&property_id=#{@property_1.id}"
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(422)
+    data = JSON.parse(response.body, symbolize_names: true)
+
+    expect(data).to be_a Hash
+    expect(data).to have_key(:error)
+    expect(data[:error]).to eq('User has already saved this property')
+  end
 end
