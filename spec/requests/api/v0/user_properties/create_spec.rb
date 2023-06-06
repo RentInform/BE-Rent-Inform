@@ -5,9 +5,9 @@ RSpec.describe 'Create a UserProperty' do
     @user1_id = '1'
     @user2_id = '2'
 
-    @property_1 = Property.create!(street: '1 BROWN ST', zipcode: '19123', license_number: '811649')
-    @property_2 = Property.create!(street: '1 CHRISTIAN ST', zipcode: '19147', license_number: '791507')
-    @property_3 = Property.create!(street: '1 COTTON ST', zipcode: '19127', license_number: '725285')
+    @property_1 = Property.create!(street: '1 BROWN ST', zip: '19123', license_number: '811649')
+    @property_2 = Property.create!(street: '1 CHRISTIAN ST', zip: '19147', license_number: '791507')
+    @property_3 = Property.create!(street: '1 COTTON ST', zip: '19127', license_number: '725285')
   end
 
   it 'creates a UserProperty' do

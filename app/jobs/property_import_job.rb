@@ -15,7 +15,7 @@ class PropertyImportJob < ApplicationJob
     temp_properties = []
     CSV.foreach(file_path, headers: true) do |row|
       temp_properties << TempProperty.new(street: row['ADDRESS'],
-                                          zipcode: row['ZIP'],
+                                          zip: row['ZIP'],
                                           license_number: license_cleaner(row['LICENSENUMBER']),
                                           license_created_at: row['CRS_CREATEDDATE'])
     end
@@ -32,7 +32,7 @@ class PropertyImportJob < ApplicationJob
 
   def temp_to_final(temp_properties)
     temp_properties.map do |temp_property|
-      Property.new(street: temp_property.street, zipcode: temp_property.zipcode, license_number: temp_property.license_number)
+      Property.new(street: temp_property.street, zip: temp_property.zip, license_number: temp_property.license_number)
     end
   end
 end
