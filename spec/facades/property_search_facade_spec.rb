@@ -9,10 +9,15 @@ RSpec.describe 'Property Search Facade', :vcr do
 
   describe 'instance methods' do
     it 'search_by_address(street)' do
-      street = "1 Brown Street"
-      result = PropertySearchFacade.new.search_by_address(street)
+      street_1 = '1 Brown Street'
+      result_1 = PropertySearchFacade.new.search_by_address(street_1)
 
-      expect(result).to be_a(Property)
+      expect(result_1).to eq(@property_1)
+
+      street_2 = '1christian street'
+      result_2 = PropertySearchFacade.new.search_by_address(street_2)
+
+      expect(result_2).to eq(@property_2)
     end
 
     it 'set_scores(property)' do
