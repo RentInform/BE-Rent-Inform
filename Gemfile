@@ -14,6 +14,7 @@ gem "puma", "~> 5.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
+gem "jsonapi-serializer"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -42,6 +43,13 @@ gem 'sidekiq'
 # ActiveRecord Import
 gem 'activerecord-import'
 
+# Faraday and Figaro
+gem 'faraday'
+gem 'figaro'
+
+# Amadeus API
+gem 'amadeus'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -56,4 +64,7 @@ end
 group :test do
   gem "simplecov"
   gem 'rspec-rails'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'shoulda-matchers'
 end
