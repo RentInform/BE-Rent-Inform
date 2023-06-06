@@ -39,7 +39,7 @@ gem "bootsnap", require: false
 # Sidekiq
 gem 'sidekiq'
 
-#ActiveRecord Import
+# ActiveRecord Import
 gem 'activerecord-import'
 
 group :development, :test do
@@ -57,4 +57,3 @@ group :test do
   gem "simplecov"
   gem 'rspec-rails'
 end
-
