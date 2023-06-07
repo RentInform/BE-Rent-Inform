@@ -4,7 +4,7 @@ RSpec.describe PropertyImportJob, type: :job do
   describe 'perform' do
     before(:all) do
       @file_path = Rails.root.join('spec', 'fixtures', 'TEST_DATA.csv').to_s
-      PropertyImportJob.perform_now(@file_path)
+      PropertyImportJob.perform_now(@file_path, async: false)
     end
 
     after(:all) do
