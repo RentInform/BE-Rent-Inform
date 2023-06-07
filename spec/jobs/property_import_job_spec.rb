@@ -4,7 +4,7 @@ RSpec.describe PropertyImportJob, type: :job do
   describe 'perform' do
     before(:all) do
       @file_path = Rails.root.join('spec', 'fixtures', 'TEST_DATA.csv').to_s
-      PropertyImportJob.perform_now(@file_path, async: false)
+      PropertyImportJob.perform_now([@file_path], false)
     end
 
     after(:all) do
@@ -34,7 +34,7 @@ RSpec.describe PropertyImportJob, type: :job do
     it 'does not create duplicate records for any existing address when run more than once' do
       initial_count = Property.count
 
-      PropertyImportJob.perform_now(@file_path)
+      PropertyImportJob.perform_now([@file_path], false)
       expect(Property.count).to eq(initial_count)
     end
   end

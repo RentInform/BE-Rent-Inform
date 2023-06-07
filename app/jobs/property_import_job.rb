@@ -3,12 +3,17 @@ require 'csv'
 class PropertyImportJob < ApplicationJob
   queue_as :default
 
-  def perform(file_path, async: true)
-    TempProperty.import csv_to_temp(file_path)
-    if async
-      TempToFinalJob.perform_later(async)
+  def perform(file_paths, async)
+    path = file_paths.shift()
+    TempProperty.import csv_to_temp(path)
+    if file_paths.empty?
+      if async
+        TempToFinalJob.perform_later(async)
+      else
+        TempToFinalJob.perform_now(async)
+      end
     else
-      TempToFinalJob.perform_now(async)
+      PropertyImportJob.perform_later(file_paths, async)
     end
   end
 
