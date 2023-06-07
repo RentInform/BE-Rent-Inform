@@ -68,7 +68,7 @@ workflows:
           post-steps:
             - run:
                 name: migrate
-                command: heroku run -a $HEROKU_APP_NAME rails db:migrate
+                command: heroku run -a sheltered-harbor-92742 rails db:migrate
           filters:
             branches:
               only:
