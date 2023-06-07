@@ -87,7 +87,7 @@ GEM
     diff-lcs (1.5.0)
     docile (1.4.0)
     erubi (1.12.0)
-    faraday (2.7.4)
+    faraday (2.7.5)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
@@ -96,10 +96,10 @@ GEM
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
-    i18n (1.13.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.6.4)
+    irb (1.7.0)
       reline (>= 0.3.0)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
@@ -175,9 +175,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (4.8.1)
     redis-client (0.14.1)
       connection_pool
-    reline (0.3.4)
+    reline (0.3.5)
       io-console (~> 0.5)
     rexml (3.2.5)
     rspec-core (3.12.2)
@@ -244,6 +245,7 @@ DEPENDENCIES
   pry
   puma (~> 5.0)
   rails (~> 7.0.5)
+  redis (~> 4.0)
   rspec-rails
   shoulda-matchers
   sidekiq
