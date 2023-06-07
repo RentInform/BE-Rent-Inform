@@ -63,7 +63,7 @@ workflows:
       - build
       - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
           requires:
-            - build-and-test
+            - build
           post-steps:
             - run:
                 name: migrate
