@@ -26,6 +26,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_DB: rent_inform_be_test
           POSTGRES_PASSWORD: secret
+      - image: cimg/redis:6.2.6
     executor: ruby/default
     steps:
       - checkout
