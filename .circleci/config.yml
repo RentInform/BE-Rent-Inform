@@ -12,13 +12,6 @@ orbs:
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
   build:
-    parameters:
-      PARAM_APP_NAME:
-        type: string
-        default: sheltered-harbor-92742
-      PARAM_HEROKU_API_KEY:
-        type: string
-        default: ${{ secrets.HEROKU_API_KEY }}
     docker:
       - image: cimg/ruby:3.1.1
         environment: # environment variables for primary container
