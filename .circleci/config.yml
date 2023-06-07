@@ -72,10 +72,6 @@ workflows:
       - deploy:
           requires:
             - build
-          post-steps:
-            - run:
-                name: migrate
-                command: heroku run -a $HEROKU_APP_NAME rails db:migrate
           filters:
             branches:
               only:
