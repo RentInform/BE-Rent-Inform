@@ -6,6 +6,7 @@ version: 2.1
 # See: https://circleci.com/docs/orb-intro/
 orbs:
   ruby: circleci/ruby@2.0.1
+  heroku: circleci/heroku@2.0.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
@@ -13,6 +14,18 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:3.1.1
+        environment: # environment variables for primary container
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          RAILS_ENV: test
+      - image: circleci/postgres:11
+        environment: # environment variables for database, it is kind of obvious but it is important that they match with your test config in database.yml
+          POSTGRES_USER: postgres
+          POSTGRES_DB: rent_inform_be_test
+          POSTGRES_PASSWORD: secret
     executor: ruby/default
     steps:
       - checkout
@@ -20,6 +33,27 @@ jobs:
           name: Which bundler?
           command: bundle -v
       - ruby/install-deps
+      - run:
+          name: Force Bundler Version
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+      - run:
+          name: Bundle Install
+          command: bundle install
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:{create,migrate} --trace
+      - run:
+          name: Run rspec in parallel
+          command: bundle exec rspec
+      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: test_results
+      # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -28,3 +62,14 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - build
+          post-steps:
+            - run:
+                name: migrate
+                command: heroku run -a $HEROKU_APP_NAME rails db:migrate
+          filters:
+            branches:
+              only:
+                - main
