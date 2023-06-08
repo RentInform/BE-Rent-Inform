@@ -68,6 +68,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#endpoints">Endpoints</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -154,7 +155,109 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Endpoints
 
+<details>
+<summary>GET <code>/api/v0/search?street="&zip="</code></summary>
+<br>
+  <code>{
+    "data": {
+      "type": "property",
+      "id": "1",
+      "attributes": {
+          "street": "123 Main Street",
+          "city": "Philadelphia",
+          "state": "PA"
+          "zip": "19148"
+          "walk_score": "89",
+          "transit_score": "57",
+          "bike_score": "23",
+          "safety_score": "99"
+      }
+    }
+  }</code>
+</details>
+<br>
+<details>
+<summary>GET <code>/api/v0/user_properties?user_id=''</code></summary>
+<br>
+  <code>{
+    "data": [
+             { "type": "property",
+               "id": "1",
+               "attributes": { 
+                   "street": "123 Main Street",
+                   "city": "Philadelphia",
+                   "state": "PA",
+                   "zip": "19148"
+               }
+             },
+             { "type": "property",
+               "id": "2",
+               "attributes": { 
+                   "street": "123 Main Street",
+                   "city": "Philadelphia",
+                   "state": "PA",
+                   "zip": "19148"
+               }
+             },
+             { "type": "property",
+               "id": "3",
+               "attributes": {
+                   "street": "123 Main Street",
+                   "city": "Philadelphia",
+                   "state": "PA",
+                   "zip": "19148"
+               }
+             },
+             ...
+            ] 
+    }</code>
+</details>
+<br>
+<details>
+<summary>GET <code>/api/v0/user_properties?user_id=''&property_id=''</code></summary>
+<br>
+  <code>{
+  "data": {
+    "type": "property",
+    "id": "1",
+    "attributes": {
+        "street": "123 Main Street",
+        "city": "Philadelphia",
+        "state": "PA"
+        "zip": "19148"
+        "walk_score": "89",
+        "transit_score": "57",
+        "bike_score": "23",
+        "safety_score": "99"
+    }
+  }
+    }</code>
+</details>
+<br>
+<details>
+<summary>POST <code>/api/v0/user_property=?user_id=''&property_id=''</code></summary>
+<br>
+  <code>{
+    data: {
+    "type": "user_property",
+    "id": "1",
+    "attributes": {
+        "user_id": "12345",
+        "property_id": "98765"
+    }
+    }</code>
+</details>
+<br>
+<details>
+<summary>DELETE <code>/api/v0/user_property=?user_id=''&property_id=''</code></summary>
+<br>
+<code>{
+
+  }</code>
+</details>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
