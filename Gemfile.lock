@@ -126,6 +126,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    newrelic_rpm (9.2.2)
     nio4r (2.5.9)
     nokogiri (1.15.2)
       mini_portile2 (~> 2.8.2)
@@ -241,6 +242,7 @@ DEPENDENCIES
   faraday
   figaro
   jsonapi-serializer
+  newrelic_rpm
   pg (~> 1.1)
   pry
   puma (~> 5.0)
