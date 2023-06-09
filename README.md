@@ -36,16 +36,8 @@
 <h3 align="center">RentInform</h3>
 
   <p align="center">
-    This is the Back End for our RentInform application. RentInform is the Consultancy group project from Turing School of Software and Design's mod three backend program. Read more: https://backend.turing.edu/module3/projects/consultancy/
+    Welcome to the back end repository for RentInform! <br /> RentInform is a web application built for the Turing School of Software and Design's Mod 3 Consultancy project. Read more about project requirements: https://backend.turing.edu/module3/projects/consultancy/
     <br />
-    <a href="https://github.com/RentInform/Rent-Inform-BE"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/RentInform/Rent-Inform-BE">View Demo</a>
-    ·
-    <a href="https://github.com/RentInform/Rent-Inform-BE/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/RentInform/Rent-Inform-BE/issues">Request Feature</a>
   </p>
 </div>
 
@@ -83,11 +75,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-RentInform is a civic data tool designed to help prospective Philadelphia renters gather information about potential new homes, avoid financial or health hazards, and make informed renting decisions to best meet their household's needs.
+RentInform is a civic data tool designed to help prospective Philadelphia renters gather information about potential new homes, avoid financial and health hazards, and make informed renting decisions to best meet their household's needs.
 
-The backend of this app does. . . 
+The back end application is an API built with the Rails framework. It exposes 5 RESTful endpoints and is responsible for recieving JSON requests, querying the internal database (certified rental properties), consuming external APIs, and formatting JSON responses to send data to the front end application.
 
-- [Produciton Website](https://mysterious-escarpment-07313.herokuapp.com/)
+- [Production Website](https://mysterious-escarpment-07313.herokuapp.com/)
 - [Backend Service](https://sheltered-harbor-92742.herokuapp.com/)
   - To reach endpoint append `/api/v0/search?street='123-main-street'&zip='12345'`
   - See more endpoints [here](https://github.com/RentInform/Rent-Inform-BE)
@@ -99,7 +91,7 @@ The backend of this app does. . .
 
 
 
-### Built With
+### Built With:
 
 * [![Ruby][Ruby]][Ruby-url]
 * [![Rails][Rails]][Rails-url]
@@ -108,7 +100,7 @@ The backend of this app does. . .
 * [![CircleCI][CircleCI]][CircleCI-url]
 * [![Heroku][Heroku]][Heroku-url]
 
-RentInfrom BE uses these integrations:
+RentInform's back end application uses these integrations:
 * [WalkScore Professional](https://www.walkscore.com/professional/api.php)
 * [Amadeus Safe Place API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place)
 * [TomTom Geocoding API](https://developer.tomtom.com/geocoding-api/documentation/geocode)
@@ -121,9 +113,9 @@ RentInfrom BE uses these integrations:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To demo this on your local machine follow these steps: 
+To demo RentInform on your local machine, follow these steps: 
 
-### Backend Repository
+### Back End Repository
 
 1. Get a free WalkScore API Key [here](https://www.walkscore.com/professional/api-sign-up.php)
 2. Register for a Self-Service API for a production environment [here](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place)
@@ -133,27 +125,26 @@ To demo this on your local machine follow these steps:
 6. Run: `bundle install`
 7. Run: `rails db:{create,migrate}`
 8. Run: `bundle exec figaro install`
-9. Add `TOMTOM_API_KEY`, `WALK_SCORE_API_KEY`, `AMADEUS_CLIENT_SECRET`, and `AMADEUS_CLIENT_ID` in `config/application.yml` file
-10. Populate development Database:
+9. Add `TOMTOM_API_KEY`, `WALK_SCORE_API_KEY`, `AMADEUS_CLIENT_SECRET`, and `AMADEUS_CLIENT_ID` to `config/application.yml` file
+10. To populate development database:
   * Run: `redis-server` to start Redis server
   * Run: `bundle exec sidekiq -q default`
-  * If you wish to view the sidekiq dashborad:
+  * If you wish to view the Sidekiq dashboard:
     * Run: `rails s`
     * Route: `http://localhost:3000/sidekiq/`
   * Run: `rake property_import`
     * To verify the job is completed, check `rails c` for `Property.count` ~= 100k
-11. Run: `rails s` to start rails server
-12. Visit: http://localhost:5000/  
+11. Run: `rails s` to start Rails server
+12. Visit: http://localhost:3000/  
 
 
-### Frontend Repository
-1. clone the frontend [here](https://github.com/RentInform/Rent-Inform-FE)
-2. Follow instuctions in the frontend repo `README`
+### Front End Repository
+1. Clone the front end [here](https://github.com/RentInform/Rent-Inform-FE)
+2. Follow instuctions in the front end repo `README`
 
-### Prequisites
+### Prerequisites
 - Ruby Version 3.1.1
 - Rails Version 7.0.5
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -162,14 +153,14 @@ To demo this on your local machine follow these steps:
 <!-- Testing -->
 ## Testing
  
-`bundle exec rspec` will run the entire test suite. *All tests passing at time of writing.*
+`bundle exec rspec` will run the entire test suite. *All tests are passing at time of writing.*
 
-- Also considered: Happy path, sad path, and edge cases were tested. Error messages were added where applicable.
+The team tested happy paths, sad paths, and edge cases when needed. Error responses were added where applicable. 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- DB Design -->
+<!-- DBDesign -->
 ## DB Design
  
  <img src="https://user-images.githubusercontent.com/120869196/244580222-8ad41554-134f-4111-b48b-51cdb11aa065.png" alt="Schema" width="100%">
@@ -283,6 +274,19 @@ To demo this on your local machine follow these steps:
 <!-- Technical Solutions -->
 ## Technical Solutions
 
+As part of the Consultancy project requirements, the RentInform team challenged ourselves to implement three stretch technologies during the two-week design and development process. We selected these technologies based on the challenges we anticipated facing while building out our MVP, and adjusted our choices to reflect our individual and team learning goals as well as blockers that came up during the course of working on the project.
+
+### Background Workers
+* <b>Challenge:</b> The available data on certification of rental compliance was only available in a CSV format, the number of entries in the list was very large (500K+), and the data needed significant de-duplication and normalization to be able to successfully query by address.
+* <b>Solution:</b> We used the Rails Active Job framework, Sidekiq, and Redis to declare and run a job to read in the CSV file, sanitize the data, and populate our back end Postgres database with Property records. While our first draft job worked in development, we exceeded the memory limit of our Heroku deployment when we ran the job in production. To address this, we broke the single job into three smaller jobs with a single responsibility each, and also split our CSV file so that the most memory-intensive portion of the task was completed in batches. A future extension might include adding jobs to periodically download a new CSV from the City of Philadelphia’s website and a job to handle breaking the large CSV into multiple smaller parts for faster processing.
+
+### Observability
+* <b>Challenge:</b> Once our application was deployed, we did not have a good way to measure response times, track performance, or analyze how the app was working in production beyond reviewing errors and logs.
+* <b>Solution:</b> We researched popular observability platforms with free access tiers, including Honeybadger and New Relic. We decided on New Relic for this project because it offered an easy-to-read metrics dashboard with information on page response and loading times.  We configured New Relic for both our front end and back end repositories, and ran some experiments interacting with our application to help us determine where best to utilize caching.
+
+### Caching
+* <b>Challenge:</b> Two of the API endpoints that expose data for the front end of our application rely on both database queries and external API calls, and were running slowly (10-15+ seconds per call) when first deployed. This delay resulted in a less-than-ideal experience for our users.
+* <b>Solution:</b> After interacting with our application running live and reviewing data from New Relic, we realized that the endpoints for searching properties and getting more details for a property were running slowest, and were good candidates for low-level caching since they contained information that was not likely to change quickly (addresses and scores). We used the `Rails.cache` syntax and some [helpful documentation](https://www.honeybadger.io/blog/rails-low-level-caching/) to cache these requests in the front end service object that handles the call to the back end API, and noticed immediate improvements in response times. We decided not to implement caching for other API calls that would change frequently, such as the request to get all saved properties for a specific user.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -290,18 +294,14 @@ To demo this on your local machine follow these steps:
 ## Roadmap
 
 Additional features, functionality, and potential refactors:
-* Add background jobs to download and split CSVs automatically
-* Cache external API calls
-* Consume additional APIs to gather data to implement new frontend features
-* Improve search to match on zipcode and/or lat & lon
-  * Allow a visitor to search properties
-* Additional backend database validations
+* Add more background jobs to download and split CSVs automatically every 1-3 months
+* Cache external API calls to improve performance
+* Consume additional APIs to gather data for implementation of new front end features
+* Improve search to match on zipcode and/or lat & lon coordinates
+  * Allow a visitor to search properties with different queries
+* Additional back end database validations
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- TESTING -->
 
 
 <!-- LICENSE -->
@@ -312,7 +312,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- CONTACT -->
 ## Contact
 
@@ -321,8 +320,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * Logan Cole: [![Linkedin][linkedin]][logan-li-url] [![Github][Github]][logan-gh-url]
 * Stephen McPhee: [![Linkedin][linkedin]][stephen-li-url] [![Github][Github]][stephen-gh-url]
 
-Special Thanks: Jamison Ordway our instructor and project manager
-
+<b>Special Thanks:</b> Jamison Ordway, our instructor and project manager
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -333,6 +331,7 @@ Special Thanks: Jamison Ordway our instructor and project manager
 
 * [Background Workers Lesson - Github](https://github.com/turingschool/backend-curriculum-site/blob/gh-pages/module3/archive/lessons/background_workers.md)
 * [Background Workers Lesson](https://backend.turing.edu/module3/slides/background_workers)
+* [Banner Image - Philly Skyline](https://www.skylinescenes.com/products/philadelphia-skyline-panorama-2-2-2)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -377,3 +376,8 @@ Special Thanks: Jamison Ordway our instructor and project manager
 [grace-gh-url]: https://github.com/grace-joh
 [logan-gh-url]: https://github.com/exasperlnc
 [stephen-gh-url]: https://github.com/SMcPhee19
+
+<!-- * [Video Presentation]()    <div>
+    <video src=“our-video-url” controls width=”340" height=”260">
+    </video>
+   </div> -->
