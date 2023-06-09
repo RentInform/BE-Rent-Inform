@@ -67,10 +67,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#dbdesign">DB Design</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#tech">Technical Solutions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -82,9 +83,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 RentInform is a civic data tool designed to help prospective Philadelphia renters gather information about potential new homes, avoid financial or health hazards, and make informed renting decisions to best meet their household's needs.
+
+The backend of this app does. . . 
+
+- [Produciton Website](https://mysterious-escarpment-07313.herokuapp.com/)
+- [Backend Service](https://sheltered-harbor-92742.herokuapp.com/)
+  - To reach endpoint append `/api/v0/search?street='123-main-street'&zip='12345'`
+  - See more endpoints [here](https://github.com/RentInform/Rent-Inform-BE)
+- Github repositories:
+  * Front End: [![Github][Github]][project-fe-gh-url]
+  * Back End: [![Github][Github]][project-be-gh-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -97,10 +106,11 @@ RentInform is a civic data tool designed to help prospective Philadelphia renter
 * [![PostgreSQL][Postgres]][Postgres-url]
 * [![Redis][Redis]][Redis-url]
 * [![CircleCI][CircleCI]][CircleCI-url]
+* [![Heroku][Heroku]][Heroku-url]
 
 RentInfrom BE uses these integrations:
 * [WalkScore Professional](https://www.walkscore.com/professional/api.php)
-* [TomTom Places API](https://developer.tomtom.com/products/places-api)
+* [Amadeus Safe Place API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place)
 * [TomTom Geocoding API](https://developer.tomtom.com/geocoding-api/documentation/geocode)
 
 
@@ -111,48 +121,59 @@ RentInfrom BE uses these integrations:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To demo this on your local machine follow these steps: 
 
-### Installation
+### Backend Repository
 
 1. Get a free WalkScore API Key [here](https://www.walkscore.com/professional/api-sign-up.php)
-2. Get a free TomTom Places API Key [here](https://developer.tomtom.com/user/register)
+2. Register for a Self-Service API for a production environment [here](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place)
 3. Get a free TomTom Geocoding API Key [here](https://developer.tomtom.com/geocoding-api/documentation/geocode)
-4. Fork the repo
-5. Clone the repo, by running this in your terminal
-   ```
-   git clone https://github.com/RentInform/Rent-Inform-BE.git
-   ```
-3. Install the gems
-   ```
-   bundle install
-   ```
-4. Create and migrate the database
-   ```
-   rails db:{create,migrate}
-   ```
-5. Install `Figaro` and create your `application.yml` by running this from the command line
-   ```
-   bundle exec figaro install
-   ```
-6. Using `Figaro` enter your API keys at the bottom of the `config/application.yml` file
-   ```
-   first_api_key: '1234abcd'
-   second_api_key: '5678efgh'
-   etc...
-   ```
+4. Clone this repo `git@github.com:RentInform/Rent-Inform-FE.git`
+5. Navigate to the local repository: `cd Rent-Infrom-FE`
+6. Run: `bundle install`
+7. Run: `rails db:{create,migrate}`
+8. Run: `bundle exec figaro install`
+9. Add `TOMTOM_API_KEY`, `WALK_SCORE_API_KEY`, `AMADEUS_CLIENT_SECRET`, and `AMADEUS_CLIENT_ID` in `config/application.yml` file
+10. Populate development Database:
+  * Run: `redis-server` to start Redis server
+  * Run: `bundle exec sidekiq -q default`
+  * If you wish to view the sidekiq dashborad:
+    * Run: `rails s`
+    * Route: `http://localhost:3000/sidekiq/`
+  * Run: `rake property_import`
+    * To verify the job is completed, check `rails c` for `Property.count` ~= 100k
+11. Run: `rails s` to start rails server
+12. Visit: http://localhost:5000/  
+
+
+### Frontend Repository
+1. clone the frontend [here](https://github.com/RentInform/Rent-Inform-FE)
+2. Follow instuctions in the frontend repo `README`
+
+### Prequisites
+- Ruby Version 3.1.1
+- Rails Version 7.0.5
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- Testing -->
+## Testing
+ 
+`bundle exec rspec` will run the entire test suite. *All tests passing at time of writing.*
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+- Also considered: Happy path, sad path, and edge cases were tested. Error messages were added where applicable.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- DB Design -->
+## DB Design
+ 
+ <img src="https://user-images.githubusercontent.com/120869196/244580222-8ad41554-134f-4111-b48b-51cdb11aa065.png" alt="Schema" width="100%">
+ 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Endpoints
@@ -259,32 +280,28 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 </details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Technical Solutions -->
+## Technical Solutions
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ROADMAP -->
 ## Roadmap
-- [ ] 
 
-See the [open issues](https://github.com/RentInform/Rent-Inform-BE/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b new_feature_branch_name`)
-3. Commit your Changes (`git commit -m 'Add some new feature'`)
-4. Push to the Branch (`git push origin new_feature_branch_name`)
-5. Open a Pull Request
+Additional features, functionality, and potential refactors:
+* Add background jobs to download and split CSVs automatically
+* Cache external API calls
+* Consume additional APIs to gather data to implement new frontend features
+* Improve search to match on zipcode and/or lat & lon
+  * Allow a visitor to search properties
+* Additional backend database validations
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+
+<!-- TESTING -->
 
 
 <!-- LICENSE -->
@@ -304,8 +321,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * Logan Cole: [![Linkedin][linkedin]][logan-li-url] [![Github][Github]][logan-gh-url]
 * Stephen McPhee: [![Linkedin][linkedin]][stephen-li-url] [![Github][Github]][stephen-gh-url]
 
-* Front End: [![Github][Github]][project-fe-gh-url]
-* Back End: [![Github][Github]][project-be-gh-url]
+Special Thanks: Jamison Ordway our instructor and project manager
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -351,6 +368,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Redis-url]: https://redis.io
 [CircleCI]: https://img.shields.io/badge/circleci-343434?style=for-the-badge&logo=circleci&logoColor=white
 [CircleCI-url]: https://circleci.com/
+[Heroku]: https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white
+[Heroku-url]: https://devcenter.heroku.com/articles/getting-started-with-rails7
 [Github]: https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
 [project-fe-gh-url]: https://github.com/RentInform/Rent-Inform-FE
 [project-be-gh-url]: https://github.com/RentInform/Rent-Inform-BE
