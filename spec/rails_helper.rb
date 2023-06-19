@@ -76,7 +76,8 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.filter_sensitive_data('TOMTOM_API_KEY') { ENV['TOMTOM_API_KEY'] }
   config.filter_sensitive_data('WALK_SCORE_API_KEY') { ENV['WALK_SCORE_API_KEY'] }
-  config.filter_sensitive_data('SAFE_PLACE_API_KEY') { ENV['SAFE_PLACE_API_KEY'] }
+  config.filter_sensitive_data('AMADEUS_CLIENT_ID') { ENV['AMADEUS_CLIENT_ID'] }
+  config.filter_sensitive_data('AMADEUS_CLIENT_SECRET') { ENV['AMADEUS_CLIENT_SECRET'] }
   config.configure_rspec_metadata!
   config.default_cassette_options = { allow_playback_repeats: true }
 end
