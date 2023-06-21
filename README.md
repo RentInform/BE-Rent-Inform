@@ -29,7 +29,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/RentInform/Rent-Inform-BE">
+  <a href="https://github.com/RentInform/BE-Rent-Inform">
     <img src="images/philadelphia_004_1276_pano_up.jpg" alt="Logo" width="900" height="315">
   </a>
 
@@ -82,7 +82,7 @@ The back end application is an API built with the Rails framework. It exposes 5 
 - [Production Website](https://mysterious-escarpment-07313.herokuapp.com/)
 - [Backend Service](https://sheltered-harbor-92742.herokuapp.com/)
   - To reach endpoint append `/api/v0/search?street='123-main-street'&zip='12345'`
-  - See more endpoints [here](https://github.com/RentInform/Rent-Inform-BE)
+  - See more endpoints [here](https://github.com/RentInform/BE-Rent-Inform)
 - Github repositories:
   * Front End: [![Github][Github]][project-fe-gh-url]
   * Back End: [![Github][Github]][project-be-gh-url]
@@ -120,8 +120,8 @@ To demo RentInform on your local machine, follow these steps:
 1. Get a free WalkScore API Key [here](https://www.walkscore.com/professional/api-sign-up.php)
 2. Register for a Self-Service API for a production environment [here](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place)
 3. Get a free TomTom Geocoding API Key [here](https://developer.tomtom.com/geocoding-api/documentation/geocode)
-4. Clone this repo `git@github.com:RentInform/Rent-Inform-FE.git`
-5. Navigate to the local repository: `cd Rent-Infrom-FE`
+4. Clone this repo `git@github.com:RentInform/BE-Rent-Inform.git`
+5. Navigate to the local repository: `cd BE-Rent-Inform`
 6. Run: `bundle install`
 7. Run: `rails db:{create,migrate}`
 8. Run: `bundle exec figaro install`
@@ -339,16 +339,16 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/RentInform/Rent-Inform-BE.svg?style=for-the-badge
-[contributors-url]: https://github.com/RentInform/Rent-Inform-BE/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/RentInform/Rent-Inform-BE.svg?style=for-the-badge
-[forks-url]: https://github.com/RentInform/Rent-Inform-BE/network/members
-[stars-shield]: https://img.shields.io/github/stars/RentInform/Rent-Inform-BE.svg?style=for-the-badge
-[stars-url]: https://github.com/RentInform/Rent-Inform-BE/stargazers
-[issues-shield]: https://img.shields.io/github/issues/RentInform/Rent-Inform-BE.svg?style=for-the-badge
-[issues-url]: https://github.com/RentInform/Rent-Inform-BE/issues
-[license-shield]: https://img.shields.io/github/license/RentInform/Rent-Inform-BE.svg?style=for-the-badge
-[license-url]: https://github.com/RentInform/Rent-Inform-BE/blob/main/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/RentInform/BE-Rent-Inform.svg?style=for-the-badge
+[contributors-url]: https://github.com/RentInform/BE-Rent-Inform/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/RentInform/BE-Rent-Inform.svg?style=for-the-badge
+[forks-url]: https://github.com/RentInform/BE-Rent-Inform/network/members
+[stars-shield]: https://img.shields.io/github/stars/RentInform/BE-Rent-Inform.svg?style=for-the-badge
+[stars-url]: https://github.com/RentInform/BE-Rent-Inform/stargazers
+[issues-shield]: https://img.shields.io/github/issues/RentInform/BE-Rent-Inform.svg?style=for-the-badge
+[issues-url]: https://github.com/RentInform/BE-Rent-Inform/issues
+[license-shield]: https://img.shields.io/github/license/RentInform/BE-Rent-Inform.svg?style=for-the-badge
+[license-url]: https://github.com/RentInform/BE-Rent-Inform/blob/main/LICENSE.txt
 [linkedin]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
 [caroline-li-url]: https://www.linkedin.com/in/carolineperi/
 [grace-li-url]: https://www.linkedin.com/in/graceehjoh/
@@ -371,7 +371,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Heroku-url]: https://devcenter.heroku.com/articles/getting-started-with-rails7
 [Github]: https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
 [project-fe-gh-url]: https://github.com/RentInform/Rent-Inform-FE
-[project-be-gh-url]: https://github.com/RentInform/Rent-Inform-BE
+[project-be-gh-url]: https://github.com/RentInform/BE-Rent-Inform
 [caroline-gh-url]: https://github.com/cariperi
 [grace-gh-url]: https://github.com/grace-joh
 [logan-gh-url]: https://github.com/exasperlnc
