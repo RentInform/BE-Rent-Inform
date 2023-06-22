@@ -15,6 +15,11 @@ class PropertySearchFacade
     property.safety_score = scores[:safety].to_s
   end
 
+  def set_city_and_state(property)
+    property.city = 'Philadelphia'
+    property.state = 'PA'
+  end
+
   private
 
   def normalize_search(street)
@@ -37,11 +42,6 @@ class PropertySearchFacade
     regex = Regexp.new(street_types.keys.map { |key| Regexp.escape(key) }.join('|'))
     normalized_text = text.gsub(regex, street_types)
     return number, normalized_text
-  end
-
-  def set_city_and_state(property)
-    property.city = 'Philadelphia'
-    property.state = 'PA'
   end
 
   def geocode(street)

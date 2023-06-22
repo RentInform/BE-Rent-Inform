@@ -2,8 +2,8 @@ class Api::V0::PropertiesController < ApplicationController
   before_action :check_database_for_property, only: [:search]
 
   def search
-    PropertySearchFacade.new.set_scores(@property)
-    render json: PropertySerializer.new(@property)
+    PropertySearchFacade.new.set_city_and_state(@property)
+    render json: BasePropertySerializer.new(@property)
   end
 
   private
