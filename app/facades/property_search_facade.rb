@@ -9,6 +9,8 @@ class PropertySearchFacade
     coordinates = geocode("#{property.street}, #{property.city}, #{property.state} #{property.zip}")
     scores = get_mobility_scores(property.street, coordinates).merge(get_safety_score(coordinates))
 
+    property.lat = coordinates[:lat].to_s
+    property.lon = coordinates[:lon].to_s
     property.walk_score = scores[:walk].to_s
     property.bike_score = scores[:bike].to_s
     property.transit_score = scores[:transit].to_s
