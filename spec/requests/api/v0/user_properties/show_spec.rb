@@ -39,7 +39,7 @@ RSpec.describe 'Get one Property details for user' do
     attributes = user_property[:attributes]
     expect(attributes[:street]).to eq(@property_1.street)
 
-    keys = [:street, :city, :state, :zip, :walk_score, :transit_score, :bike_score, :safety_score]
+    keys = [:street, :city, :state, :zip, :walk_score, :transit_score, :bike_score, :safety_score, :lat, :lon]
     keys.each do |key|
       expect(attributes).to have_key(key)
       expect(attributes[key]).to be_a(String)

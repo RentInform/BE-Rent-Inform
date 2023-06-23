@@ -25,6 +25,8 @@ RSpec.describe 'Property Search Facade', :vcr do
       expect(@property_1.transit_score).to be(nil)
       expect(@property_1.bike_score).to be(nil)
       expect(@property_1.safety_score).to be(nil)
+      expect(@property_1.lat).to be(nil)
+      expect(@property_1.lon).to be(nil)
 
       PropertySearchFacade.new.set_scores(@property_1)
 
@@ -32,6 +34,8 @@ RSpec.describe 'Property Search Facade', :vcr do
       expect(@property_1.transit_score).to be_a(String)
       expect(@property_1.bike_score).to be_a(String)
       expect(@property_1.safety_score).to be_a(String)
+      expect(@property_1.lat).to be_a(String)
+      expect(@property_1.lon).to be_a(String)
     end
   end
 end
