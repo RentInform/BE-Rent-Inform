@@ -12,4 +12,13 @@ RSpec.describe GeocodeService do
     expect(coordinates[:lat]).to be_a(Float)
     expect(coordinates[:lon]).to be_a(Float)
   end
+
+  it 'returns data on 3 nearby parks', :vcr do
+    service = GeocodeService.new
+    result = service.get_parks({lat: 39.92459089291047, lon: -75.16204921093596})
+
+    expect(result).to be_a(Hash)
+    expect(result[:results]).to be_an(Array)
+    expect(result[:results].count).to eq(3)
+  end
 end
