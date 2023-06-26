@@ -7,14 +7,28 @@ class PropertySearchFacade
   def set_scores(property)
     set_city_and_state(property)
     coordinates = geocode("#{property.street}, #{property.city}, #{property.state} #{property.zip}")
-    scores = get_mobility_scores(property.street, coordinates).merge(get_safety_score(coordinates))
+    threads = []
+    
+    threads << Thread.new do
+      property.lat = coordinates[:lat].to_s
+      property.lon = coordinates[:lon].to_s
+    end
 
-    property.lat = coordinates[:lat].to_s
-    property.lon = coordinates[:lon].to_s
-    property.walk_score = scores[:walk].to_s
-    property.bike_score = scores[:bike].to_s
-    property.transit_score = scores[:transit].to_s
-    property.safety_score = scores[:safety].to_s
+    threads << Thread.new do
+      walk_scores = get_mobility_scores(property.street, coordinates)
+      property.walk_score = walk_scores[:walk].to_s
+      property.bike_score = walk_scores[:bike].to_s
+      property.transit_score = walk_scores[:transit].to_s
+    end
+
+    threads << Thread.new do
+      safety_score = get_safety_score(coordinates)
+      property.safety_score = safety_score[:safety].to_s
+    end
+
+
+    threads.each(&:join)
+    property
   end
 
   def set_city_and_state(property)
