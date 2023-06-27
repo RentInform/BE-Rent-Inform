@@ -8,7 +8,7 @@ class PropertySearchFacade
     set_city_and_state(property)
     coordinates = geocode("#{property.street}, #{property.city}, #{property.state} #{property.zip}")
     threads = []
-    
+
     threads << Thread.new do
       property.lat = coordinates[:lat].to_s
       property.lon = coordinates[:lon].to_s
@@ -26,6 +26,10 @@ class PropertySearchFacade
       property.safety_score = safety_score[:safety].to_s
     end
 
+    threads << Thread.new do
+      parks = get_parks(coordinates)
+      property.parks = parks
+    end
 
     threads.each(&:join)
     property
@@ -70,5 +74,9 @@ class PropertySearchFacade
 
   def get_safety_score(coordinates)
     SafetyFacade.new.get_safety_score(coordinates[:lat], coordinates[:lon])
+  end
+
+  def get_parks(coordinates)
+    GeocodeFacade.new.get_parks(coordinates)
   end
 end

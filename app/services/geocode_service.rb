@@ -3,6 +3,10 @@ class GeocodeService
     get_url("/search/2/geocode/#{URI.encode_www_form_component(address)}.json")
   end
 
+  def get_parks(coordinates)
+    get_url("/search/2/categorySearch/parks.json?lat=#{coordinates[:lat]}&lon=#{coordinates[:lon]}&limit=3")
+  end
+
   private
 
   def get_url(url)
