@@ -79,9 +79,9 @@ RentInform is a civic data tool designed to help prospective Philadelphia renter
 
 The back end application is an API built with the Rails framework. It exposes 5 RESTful endpoints and is responsible for recieving JSON requests, querying the internal database (certified rental properties), consuming external APIs, and formatting JSON responses to send data to the front end application.
 
-- [Production Website](https://mysterious-escarpment-07313.herokuapp.com/)
+- [Production Website](https://rent-inform-36792dcf8db2.herokuapp.com/)
 - [Backend Service](https://sheltered-harbor-92742.herokuapp.com/)
-  - To reach endpoint append `/api/v0/search?street='123-main-street'&zip='12345'`
+  - To reach endpoint append `/api/v0/search?street='123-main-street'&zip='12345'` to the URL linked above
   - See more endpoints [here](https://github.com/RentInform/BE-Rent-Inform)
 - Github repositories:
   * Front End: [![Github][Github]][project-fe-gh-url]
@@ -104,6 +104,7 @@ RentInform's back end application uses these integrations:
 * [WalkScore Professional](https://www.walkscore.com/professional/api.php)
 * [Amadeus Safe Place API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place)
 * [TomTom Geocoding API](https://developer.tomtom.com/geocoding-api/documentation/geocode)
+* [MapQuest API](https://developer.mapquest.com/documentation/static-map-api/v5)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -120,13 +121,14 @@ To demo RentInform on your local machine, follow these steps:
 1. Get a free WalkScore API Key [here](https://www.walkscore.com/professional/api-sign-up.php)
 2. Register for a Self-Service API for a production environment [here](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place)
 3. Get a free TomTom Geocoding API Key [here](https://developer.tomtom.com/geocoding-api/documentation/geocode)
-4. Clone this repo `git@github.com:RentInform/BE-Rent-Inform.git`
-5. Navigate to the local repository: `cd BE-Rent-Inform`
-6. Run: `bundle install`
-7. Run: `rails db:{create,migrate}`
-8. Run: `bundle exec figaro install`
-9. Add `TOMTOM_API_KEY`, `WALK_SCORE_API_KEY`, `AMADEUS_CLIENT_SECRET`, and `AMADEUS_CLIENT_ID` to `config/application.yml` file
-10. To populate development database:
+4. Get a free MapQuest API Key [here](https://developer.mapquest.com/documentation/)
+5. Clone this repo `git@github.com:RentInform/BE-Rent-Inform.git`
+6. Navigate to the local repository: `cd BE-Rent-Inform`
+7. Run: `bundle install`
+8. Run: `rails db:{create,migrate}`
+9. Run: `bundle exec figaro install`
+10. Add `TOMTOM_API_KEY`, `WALK_SCORE_API_KEY`, `AMADEUS_CLIENT_SECRET`, and `AMADEUS_CLIENT_ID` to `config/application.yml` file
+11. To populate development database:
   * Run: `redis-server` to start Redis server
   * Run: `bundle exec sidekiq -q default`
   * If you wish to view the Sidekiq dashboard:
@@ -181,10 +183,6 @@ The team tested happy paths, sad paths, and edge cases when needed. Error respon
           "city": "Philadelphia",
           "state": "PA"
           "zip": "19148"
-          "walk_score": "89",
-          "transit_score": "57",
-          "bike_score": "23",
-          "safety_score": "99"
       }
     }
   }</code>
@@ -243,9 +241,19 @@ The team tested happy paths, sad paths, and edge cases when needed. Error respon
         "transit_score": "57",
         "bike_score": "23",
         "safety_score": "99"
+        "lat": "39.5",
+        "lon": "-79.0",
+        "parks": {
+            "park_1_name": "Spruce Street Harbor Park",
+            "park_1_street": "South Christopher Columbus Boulevard",
+            "park_2_name": "I-95 Park",
+            "park_2_street": "South Front Street",
+            "park_3_name": "Welcome Park",
+            "park_3_street":"South 2nd Street" 
+        }
     }
   }
-    }</code>
+}</code>
 </details>
 <br>
 <details>
