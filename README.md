@@ -50,6 +50,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#video-presentation">Video Presentation</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -77,7 +78,7 @@
 
 RentInform is a civic data tool designed to help prospective Philadelphia renters gather information about potential new homes, avoid financial and health hazards, and make informed renting decisions to best meet their household's needs.
 
-The back end application is an API built with the Rails framework. It exposes 5 RESTful endpoints and is responsible for recieving JSON requests, querying the internal database (certified rental properties), consuming external APIs, and formatting JSON responses to send data to the front end application.
+The back end application is an API built with the Rails framework. It exposes 5 RESTful endpoints and is responsible for receiving JSON requests, querying the internal database (certified rental properties), consuming external APIs, and formatting JSON responses to send data to the front end application.
 
 - [Production Website](https://rent-inform-36792dcf8db2.herokuapp.com/)
 - [Backend Service](https://sheltered-harbor-92742.herokuapp.com/)
@@ -89,7 +90,9 @@ The back end application is an API built with the Rails framework. It exposes 5 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Video Presentation:
 
+  https://user-images.githubusercontent.com/120869196/252794482-5458c2ec-a1bd-4c38-8eb7-fba32d4f0265.mp4
 
 ### Built With:
 
@@ -128,8 +131,8 @@ To demo RentInform on your local machine, follow these steps:
 8. Run: `rails db:{create,migrate}`
 9. Run: `bundle exec figaro install`
 10. Add `TOMTOM_API_KEY`, `WALK_SCORE_API_KEY`, `AMADEUS_CLIENT_SECRET`, and `AMADEUS_CLIENT_ID` to `config/application.yml` file
-11. To populate development database:
-  * Run: `redis-server` to start Redis server
+11. To populate the development database:
+  * Run: `redis-server` to start the Redis server
   * Run: `bundle exec sidekiq -q default`
   * If you wish to view the Sidekiq dashboard:
     * Run: `rails s`
@@ -142,7 +145,7 @@ To demo RentInform on your local machine, follow these steps:
 
 ### Front End Repository
 1. Clone the front end [here](https://github.com/RentInform/Rent-Inform-FE)
-2. Follow instuctions in the front end repo `README`
+2. Follow instructions in the front end repo `README`
 
 ### Prerequisites
 - Ruby Version 3.1.1
@@ -155,7 +158,7 @@ To demo RentInform on your local machine, follow these steps:
 <!-- Testing -->
 ## Testing
  
-`bundle exec rspec` will run the entire test suite. *All tests are passing at time of writing.*
+`bundle exec rspec` will run the entire test suite. *All tests are passing at the time of writing.*
 
 The team tested happy paths, sad paths, and edge cases when needed. Error responses were added where applicable. 
 
@@ -389,3 +392,5 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
     <video src=“our-video-url” controls width=”340" height=”260">
     </video>
    </div> -->
+
+   
